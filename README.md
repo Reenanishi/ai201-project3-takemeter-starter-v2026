@@ -43,7 +43,10 @@ I plan to attempt all three Unit 5 stretch features:
 1. Fourth label (+1 point): I will develop a fourth label if the posts in my chosen community show a distinct category that the first three labels do not capture. I will explain its definition, give two real examples, and document why the other labels were insufficient.
 2. Second training run (+1 point): After completing the first training run, I will run the model again with exactly one hyperparameter changed. I will record the original and updated metrics, calculate the numerical differences, and explain what changed.
 3. 50 extra examples for the thinnest label (+1 point): I will first collect and label 200 real posts and record the count for each label. Then I will identify the label with the fewest examples and collect at least 50 additional posts for that label. I will document their source, the updated label counts, and how the additional examples affected the dataset and training results.
-Declaration status: These are planned stretch features. They have not yet been implemented.
+Declaration status:
+1. Fourth label — **done**. `theory` was added in Milestone 2 (see Label Taxonomy below): posts that pose an open question or interpretation with no checkable detail attached showed up distinctly from `analysis`/`hot_take`/`reaction` across the MovieChat boards I read, and the hardest-boundary writeup documents why the other three labels couldn't absorb it.
+2. Second training run — not yet implemented (Milestone 5).
+3. 50 extra examples for the thinnest label — not yet implemented (depends on label counts from Milestone 4).
 
 
 ## What This Does
@@ -107,8 +110,26 @@ A real post from my reading sits right on this line — *Whiplash* board, "Was F
 
 **The decision rule I used every time:** If a post points to specific, checkable details from the film to build its case, it's `analysis` — even if it never lands on a firm conclusion. `theory` is reserved for posts that pose the open question without citing anything concrete to support either side. Under this rule, the Fletcher post is `analysis`.
 
-I stress-tested both this rule and the taxonomy as a whole with 8 AI-generated posts written to sit on each boundary (e.g. "That twist wrecked me, not in a good way" → `reaction`, a first-person feeling rather than a general verdict about the film; "Wonder if the necklace in the final shot matches the flashback" → `analysis` despite the question-mark phrasing, since it names a checkable detail). All 8 classified cleanly under the definitions above without needing further changes.
+I### Stress Test — 8 Borderline Posts
 
+I used ChatGPT to make 8 example movie posts that were a little confusing to label. I wanted to check if my four labels were clear enough, especially when a post could fit into more than one category.
+
+These are made-up examples for testing, not real MovieChat posts. ChatGPT suggested the labels based on my definitions.
+
+| # | Example post | Label | Reason |
+|---|---|---|---|
+| 1 | The Joker was definitely the best villain in any Batman movie. Nobody else even comes close. | `hot_take` | It's a strong opinion without specific evidence. |
+| 2 | Was Fletcher actually trying to help Andrew? In the final concert, he changes the music without warning, which makes me think he wanted Andrew to fail. | `analysis` | It mentions a specific scene to support an idea. |
+| 3 | I agree with you. That ending was disappointing. | `reaction` | It's a short personal response without an explanation. |
+| 4 | What if Cobb never woke up at the end of Inception? | `theory` | It asks about a possible interpretation without evidence. |
+| 5 | That twist completely shocked me. I couldn't stop thinking about it. | `reaction` | It's a personal feeling about the movie. |
+| 6 | The movie is overrated. The acting is bad, and the story is boring. | `hot_take` | It gives opinions but no specific examples. |
+| 7 | I think the ending of The Godfather shows Michael becoming like his father. The final scene, where the door closes on Kay, supports that idea. | `analysis` | It uses a specific scene to support an interpretation. |
+| 8 | Could Tyler Durden just be a way for the narrator to escape his boring life? | `theory` | It suggests an idea without mentioning evidence. |
+
+The hardest one was Post 2 because it starts with a question, so it could look like `theory`. But it mentions something specific that happened in the movie, so `analysis` fits better.
+
+This test helped me understand that I should look for specific evidence instead of deciding based only on whether a post is written as a question. I didn't change my label definitions after looking at these examples.
 
 
 ---
