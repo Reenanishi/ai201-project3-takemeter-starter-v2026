@@ -59,39 +59,55 @@ Declaration status: These are planned stretch features. They have not yet been i
 
 ## Label Taxonomy
 
-<!-- Each label: a one-sentence definition and two real examples from your
-     reading. Then your decision rule for the hardest boundary.
+### `analysis`
 
-     The decision rule is worth a point on its own and it's the thing most
-     people leave out. Every taxonomy has a hardest boundary. Name yours. -->
-
-### `label_one`
-
-**Definition:**
+**Definition:** Makes an argument about the film backed by a specific, checkable detail — a line of dialogue, a plot event, a date, a production fact — even if the post never lands on a firm conclusion.
 
 **Example 1:**
->
+> "You see, the boss of a crime family would always need a guy with a funeral parlor... Bonasera's beautiful daughter goes out with a couple of punks... The judge suspends the sentence. The judge. A judge in New York in the 1940s giving a suspended sentence for that kind of beating? ... He says, 'Someday, and that day may never come, I'll call upon you to do a service for me.'" — *The Godfather* board, on how Vito manipulated Bonasera
 
 **Example 2:**
->
+> "The Joker's plans require so many coincidences that it beggars belief, such as his phone-bomb escape from the police station... The Two-Face makeup effects on Eckhart also look ridiculous... He's missing the skin on half his face, with his bare eyeball, muscle, bone and tendons exposed... He would have been dead from shock or an infection in minutes." — *The Dark Knight* board, reply in "Massively Overrated Movie"
 
-### `label_two`
+### `hot_take`
 
-**Definition:**
+**Definition:** States a confident verdict about the film with no checkable detail offered in support — just the claim.
 
 **Example 1:**
->
+> "1. Bale sucked as Batman... 2. Maggie Gyllenhaal - simply not attractive enough... 3. Dialogue - some of the dialogue is absolute cringe and clunky as hell... 4. The score is completely generic and forgettable" — *The Dark Knight* board, "Massively Overrated Movie" (opening post)
 
 **Example 2:**
->
+> "Nobody exposed the plagiarism and the lack of original ideas, not to mention the absolute lack of artistic quality... cinema is in big trouble..." — *Pulp Fiction* board, "A lot of hype and a lot of mannerism: the most overrated movie of the last 30 years?"
+
+### `reaction`
+
+**Definition:** A short, immediate personal response to the film or to another post, with no argument attached.
+
+**Example 1:**
+> "Bingo" — *The Dark Knight* board, reply to "Massively Overrated Movie"
+
+**Example 2:**
+> "I disagree." — *The Dark Knight* board, reply to "Massively Overrated Movie"
+
+### `theory`
+
+**Definition:** Poses an open question or possible interpretation without citing anything concrete to support either side — invites the thread to work it out from scratch.
+
+**Example 1:**
+> "I mean, the guy is clearly a dumbass. How did he even manage to scrape together $6 million?" — *The Room* board, "How did Tommy even have $6 million to spend on this movie?"
+
+**Example 2:**
+> "I wonder if there's a theory that Wallace had Jules clipped for trying to leave." — *Pulp Fiction* board, "Could Jules really have left the life?"
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `analysis` vs. `theory`
 
-**The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+A real post from my reading sits right on this line — *Whiplash* board, "Was Fletcher actually a cruel person?": "Fletcher (to me) implied his drill instructor narcissism was all an act at the coffee shop when he calmly explained... You also see him hug his friend and kindly greet his friend's daughter... Then again, it's also very possible that his calm nature was an act since he tries to sabotage (or test) Andrew's performance in the finale." It cites three specific, checkable scenes (the coffee-shop talk, the hug, the finale sabotage) but never settles on an answer ("I don't know if...").
+
+**The decision rule I used every time:** If a post points to specific, checkable details from the film to build its case, it's `analysis` — even if it never lands on a firm conclusion. `theory` is reserved for posts that pose the open question without citing anything concrete to support either side. Under this rule, the Fletcher post is `analysis`.
+
+I stress-tested both this rule and the taxonomy as a whole with 8 AI-generated posts written to sit on each boundary (e.g. "That twist wrecked me, not in a good way" → `reaction`, a first-person feeling rather than a general verdict about the film; "Wonder if the necklace in the final shot matches the flashback" → `analysis` despite the question-mark phrasing, since it names a checkable detail). All 8 classified cleanly under the definitions above without needing further changes.
 
 
 
