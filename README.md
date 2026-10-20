@@ -37,7 +37,18 @@
 
 <!-- ═══════════════════════ UNIT 5 — THE BUILD ═══════════════════════ -->
 
+## Unit 5 Bonus Features
+
+I plan to attempt all three Unit 5 stretch features:
+1. Fourth label (+1 point): I will develop a fourth label if the posts in my chosen community show a distinct category that the first three labels do not capture. I will explain its definition, give two real examples, and document why the other labels were insufficient.
+2. Second training run (+1 point): After completing the first training run, I will run the model again with exactly one hyperparameter changed. I will record the original and updated metrics, calculate the numerical differences, and explain what changed.
+3. 50 extra examples for the thinnest label (+1 point): I will first collect and label 200 real posts and record the count for each label. Then I will identify the label with the fewest examples and collect at least 50 additional posts for that label. I will document their source, the updated label counts, and how the additional examples affected the dataset and training results.
+Declaration status: These are planned stretch features. They have not yet been implemented.
+
+
 ## What This Does
+
+
 
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
