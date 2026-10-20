@@ -51,63 +51,43 @@ whether you hit them:
 
 ---
 
-## 1.
+## 1. Overall accuracy
 
-<!-- Your criterion. It must name a number. -->
+Overall accuracy on the held-out test split is at least **0.55**, holding across all three seeds in Unit 6.
 
-
-
-**Why this target:**
-
-
+**Why this target:** My taxonomy has four labels, so a random guesser clears about 25%. 0.55 sits well above that, but I'm training on roughly 200 posts split 70/15/15 — about 140 training rows across four classes, call it 35 per class if I keep things balanced. That's a small amount of data for a transformer fine-tune, so I'm not expecting it to climb into the 80s. 0.55 is the point where I'd honestly call the model better than flipping a four-sided coin, not a number chosen to look good.
 
 ---
 
-## 2.
+## 2. Per-label performance
 
-<!-- Your criterion. -->
+Every label's F1 score on the held-out test split is at least **0.40**.
 
-
-
-**Why this target:**
-
-
+**Why this target:** `theory` is the label I expect to be thinnest — across the five MovieChat boards I read for Milestone 1, open questions with no supporting detail showed up far less often than confident one-line verdicts (`hot_take`) or bare agreement/disagreement (`reaction`). At 15% of a ~200-row file, the test split is only around 30 rows spread across four labels, so my smallest label could land with as few as 6-8 test examples — at that size, one or two misclassifications swing F1 by a lot. 0.40 is a floor meant to catch "the model never learned this label at all," not a bar I expect every label to just barely clear.
 
 ---
 
-## 3.
+## 3. Balance
 
-<!-- Your criterion. -->
+In `labels.csv`, no single label's row count exceeds **45%** of the total, and no label's row count falls below **12%** of the total.
 
-
-
-**Why this target:**
-
-
+**Why this target:** The project-wide cap is 70%, but my four labels aren't naturally balanced in the community I'm drawing from — `hot_take` and `reaction` posts are common on these boards, while `theory`-style open questions and well-argued `analysis` posts are rarer. A 45% ceiling and a 12% floor (at least ~24 of 200 rows) force me to keep actively collecting the thin categories instead of letting the easy ones fill the file, which is exactly what my planned stretch feature — 50 extra examples for the thinnest label — exists to fix if I miss it.
 
 ---
 
-## 4.
+## 4. Consistency
 
-<!-- Your criterion. -->
+Labeling the 30 posts in `data/staff_posts.csv` under the definitions in `data/staff_taxonomy.md`, my agreement with `data/staff_labels.csv` is at least **60%** (at least 18 of 30 posts match).
 
-
-
-**Why this target:**
-
-
+**Why this target:** This set uses staff's own three-label taxonomy, not my four-label one, and staff picked several of the 30 specifically because they're genuinely ambiguous between two labels — the kind of case their own decision rules exist to resolve. I'm setting 60% rather than aiming higher because I'll be applying someone else's written rules for the first time, under time pressure, and I'd rather set a number I can genuinely miss or clear than one padded to be safe.
 
 ---
 
-## 5.
+## 5. Confidence
 
-<!-- Your criterion. -->
+Among test-split predictions where the model's top-class confidence is at least 0.70, accuracy on that subset is at least **10 percentage points** higher than overall test accuracy.
 
-
-
-**Why this target:**
-
-
+**Why this target:** `results.json` records the softmax confidence behind every prediction specifically so this can be checked. If the model has learned anything about which of its own guesses are shaky, its confident predictions should clearly outperform its average — not just by a point or two, which could be noise given how few test examples land in each label. A 10-point gap is large enough that I'd trust it's real rather than seed-to-seed jitter.
 
 ---
 
