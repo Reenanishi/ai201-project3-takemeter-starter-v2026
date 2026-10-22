@@ -2,15 +2,16 @@
 
 ## Community
 
-**moviechat.org** — the former IMDb message boards, now an independent public film
-forum. Every movie/show has its own discussion board full of threads: theories,
-reviews, hot takes, nitpicks, trivia questions.
+I ended up going with **moviechat.org** instead of r/movies — it's basically the
+old IMDb message boards, now running as their own public film forum. I wanted
+r/movies originally, but Reddit kept blocking the tools I had for pulling posts
+from it, so I switched. It's the same kind of space though: every movie has its
+own discussion board, full of threads that run from one-word hot takes to long
+theory posts and nitpicks.
 
-Why this instead of r/movies directly: same kind of film-community text (same two
-source rules apply — fully public, no login needed to read, and not centered on
-one show/release), but reachable with my tools, where reddit.com is not.
-To satisfy "not built around one show or release," I did not read from a single
-film's board. I read across **five different films, spanning eras and genres**:
+To stay away from the "built around one show or release" problem, I didn't just
+park on one film's board — I read across **five different films, spanning eras
+and genres**:
 
 - *The Dark Knight* (2008)
 - *Pulp Fiction* (1994)
@@ -18,9 +19,10 @@ film's board. I read across **five different films, spanning eras and genres**:
 - *The Godfather* (1972)
 - *The Room* (2003) — the "so bad it's good" cult movie
 
-No single film's fanbase or ongoing storyline dominates the sample, and most
-threads are readable without having seen the film within the last week (they're
-all older films people return to, not a weekly episode-discussion thread).
+No single film's fanbase or ongoing story dominates the sample, and I don't
+need to have watched anything within the last week to follow these threads —
+they're all older films people keep coming back to, not a weekly
+episode-discussion thread.
 
 ## What I read
 
@@ -38,34 +40,34 @@ threads per film board, e.g.:
 
 ## Candidate distinctions
 
-1. **Some posts cite a specific, checkable detail to back their claim — a plot
-   event, a line of dialogue, a date, a production fact. Most don't.**
-   Example (has one): the Godfather post walks through the exact Bonasera
-   scene beat-by-beat ("the judge suspends the sentence... a judge in New
-   York in the 1940s...") to support its claim the manipulation was
-   deliberate.
-   Example (doesn't): "Overrated" / "Highly overrated?" / "Most boring movie
-   ever" — one-line verdicts, nothing to check.
+1. **Some posts back up their point with a specific, checkable detail — a
+   plot event, a line, a date, a production fact. Most don't.**
+   The Godfather post about Vito manipulating Bonasera is a good example of
+   one that does — it walks through the exact scene beat-by-beat ("the judge
+   suspends the sentence... a judge in New York in the 1940s...") to make its
+   case. Compare that to posts like "Overrated" or "Most boring movie ever" —
+   just a verdict, nothing to actually check.
 
-2. **Some posts are a confident evaluative verdict with no reasoning attached
-   at all — just the label ("overrated," "terrible," "masterpiece").**
-   The Pulp Fiction "overrated" post is long but is almost entirely assertion
+2. **Some posts are a confident verdict with basically no reasoning behind
+   them — just the label ("overrated," "terrible," "masterpiece").**
+   The Pulp Fiction "overrated" post is long, but it's almost all assertion
    ("cinema is in big trouble," "the absolute lack of artistic quality")
-   without pointing at anything in the film itself.
+   without ever pointing at anything actually in the film.
 
-3. **Some posts are pure one-line reactions to someone else's post — agreeing
-   or disagreeing with zero argument of their own.**
+3. **Some posts are just a one-line reaction to someone else's post —
+   agreeing or disagreeing with no argument of their own.**
    "Bingo." / "I disagree." / "Well I agree with the OP." / "Yeah. Sums it
-   up." These only make sense parasitically, attached to another post.
+   up." None of these make sense on their own — they only work attached to
+   whatever they're replying to.
 
-4. **Some posts ask an open question or float a theory without asserting an
-   answer, inviting the thread to reason it out.**
+4. **Some posts just ask an open question or float a theory without
+   committing to an answer, and leave it for the thread to work out.**
    "Was Fletcher actually a cruel person?" / "How did Tommy even have $6
-   million to spend on this movie?" — framed as questions, and the replies
-   genuinely speculate rather than just vote yes/no.
+   million to spend on this movie?" — both framed as questions, and people
+   actually speculate in the replies instead of just voting yes or no.
 
-These line up closely with the analysis / hot_take / reaction split the
-assignment uses as its "strong taxonomy" example — which tracks, since I
-read before deciding rather than designing from memory. Distinction 4
-(question/theory posts) doesn't fit neatly into that three-way split and is
-worth resolving explicitly in Milestone 2.
+These line up pretty closely with the analysis / hot_take / reaction split
+from the assignment's own "strong taxonomy" example, which felt like a good
+sign since I got there from actually reading the posts, not from guessing at
+labels beforehand. Distinction 4 doesn't fit cleanly into that three-way
+split though, which is something I had to deal with directly in Milestone 2.

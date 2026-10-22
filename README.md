@@ -51,12 +51,9 @@ Declaration status:
 
 ## What This Does
 
+I'm building a classifier for posts on moviechat.org — the old IMDb message boards, now running as their own public film discussion forum. I'd originally planned on r/movies, but Reddit kept blocking every tool I tried to use to pull posts from it, so I switched to moviechat.org and collected across 19 different movies' boards instead, to keep things spread out and not centered on any one film.
 
-
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
-
-
+My classifier sorts each post into one of four labels: `analysis` (backs up its point with something specific and checkable from the movie), `hot_take` (a confident opinion with nothing backing it up), `reaction` (a quick, low-effort emotional reply with no real argument), or `theory` (an open question or interpretation that doesn't point to anything concrete either way).
 
 ---
 
@@ -106,9 +103,9 @@ Declaration status:
 
 **Which two labels:** `analysis` vs. `theory`
 
-A real post from my reading sits right on this line — *Whiplash* board, "Was Fletcher actually a cruel person?": "Fletcher (to me) implied his drill instructor narcissism was all an act at the coffee shop when he calmly explained... You also see him hug his friend and kindly greet his friend's daughter... Then again, it's also very possible that his calm nature was an act since he tries to sabotage (or test) Andrew's performance in the finale." It cites three specific, checkable scenes (the coffee-shop talk, the hug, the finale sabotage) but never settles on an answer ("I don't know if...").
+I found a real post from my reading that sits right on this line — *Whiplash* board, "Was Fletcher actually a cruel person?": "Fletcher (to me) implied his drill instructor narcissism was all an act at the coffee shop when he calmly explained... You also see him hug his friend and kindly greet his friend's daughter... Then again, it's also very possible that his calm nature was an act since he tries to sabotage (or test) Andrew's performance in the finale." It points at three specific, checkable scenes (the coffee-shop talk, the hug, the finale sabotage), but it never actually settles on an answer ("I don't know if...").
 
-**The decision rule I used every time:** If a post points to specific, checkable details from the film to build its case, it's `analysis` — even if it never lands on a firm conclusion. `theory` is reserved for posts that pose the open question without citing anything concrete to support either side. Under this rule, the Fletcher post is `analysis`.
+**The decision rule I used every time:** if a post points to specific, checkable details from the film to make its case, I call it `analysis` — even when it never lands on a firm conclusion. I only use `theory` for posts that pose the open question without pointing at anything concrete on either side. Under that rule, the Fletcher post ends up being `analysis`.
 
 I### Stress Test — 8 Borderline Posts
 
@@ -136,48 +133,44 @@ This test helped me understand that I should look for specific evidence instead 
 
 ## The Dataset
 
-<!-- Where you collected from, how you labelled, your counts, and three hard
-     cases. -->
+**Where the posts came from:** moviechat.org, which is basically the old IMDb message boards running on their own now as a public film forum. I couldn't actually pull from r/movies like I originally planned — Reddit kept getting blocked by my tools no matter how I tried to access it, so I switched communities. I picked moviechat.org because it's the same kind of film-discussion space, fully public, no login needed to read anything. To avoid the "built around one show or release" problem, I didn't just sit on one movie's board — I pulled posts from 19 different films across a bunch of genres and decades (The Dark Knight, Pulp Fiction, Whiplash, The Godfather, The Room, Inception, Fight Club, Parasite, Joker, No Country for Old Men, The Matrix, Titanic, Seven, Memento, Donnie Darko, The Shining, Interstellar, Shutter Island, American Psycho, Get Out, and The Sixth Sense), grabbing the opening post plus the reply chain from one or two threads on each board.
 
-**Where the posts came from:**
-
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+**How I labeled them:** I used Claude to help collect the raw posts and do a first-pass label on most of the rows (188 of 208) against the definitions in `label_definitions.txt`, then I went through and corrected the ones I disagreed with. The last 20 rows (marked `cold` in the note column) I labeled completely by myself, no AI involved — Claude had pulled those posts but never labeled or discussed them with me, so they're my honesty check, exactly like the assignment wants.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `reaction` | 61 | 29.3% |
+| `analysis` | 57 | 27.4% |
+| `hot_take` | 54 | 26.0% |
+| `theory` | 36 | 17.3% |
+| **Total** | 208 | 100% |
+
+No label goes over the project's 70% cap, or even the tighter 45% ceiling I set for myself in `criteria.md`. `theory` is at 17.3% — above the 12% floor I set, but it's still clearly my thinnest label, which is exactly what I expected after Milestone 1's reading. That's what stretch feature #3 (50 extra examples for the thinnest label) is going to target later.
 
 **Three hard cases**
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
-
 **1.**
-> *The post:*
+> *The post:* A reply in *The Room*'s "$6 million" thread: "Could also be lottery winners. They tend to waste their money quickly or get killed by the mob (seriously, winning a lottery increases chances of you dying 800% and chances of people around you dying 270%)."
 >
-> *Could have been:*
+> *Could have been:* `analysis`, since it throws out a specific stat, or `hot_take`, since when someone else pushed back and asked "do you have the specific data/quote?" the only source that ever showed up was a random Reddit comment — not anything actually checkable.
 >
-> *I chose, because:*
+> *I chose, because:* I went with `analysis`. My rule just says a post needs to name something specific and checkable to build its case — it never said the fact has to actually hold up once someone checks it. That bugged me a little once I sat with it, because a made-up-sounding stat and a real one are getting treated the same way right now. That's a real hole in my taxonomy, not something I papered over.
 
 **2.**
-> *The post:*
+> *The post:* A reply in *Pulp Fiction*'s "Could Jules really have left the life?" thread: "Some people have fan theories that the piano player in Kill Bill (at the wedding, Vol.2) is Jules, walking the earth. I liked that theory for a while, but more and more I think... nah."
 >
-> *Could have been:*
+> *Could have been:* `theory`, because it's basically just weighing a possibility out loud and ends up rejecting it — or `analysis`, because it does point to something specific and checkable (the Kill Bill cameo) to reason through.
 >
-> *I chose, because:*
+> *I chose, because:* `analysis`, for the same reason as case 1 — a specific detail wins even when the poster ends up leaning away from their own idea. This is the flip side of case 1: a post can sound like `theory` because of its tone, but still have enough concrete detail in it to count as `analysis`.
 
 **3.**
-> *The post:*
+> *The post:* The opening post of *Fight Club*'s "Why does Tyler put on his seat belt?" thread: "My guess is that Tyler has limits (eg when Narrator shot at the van full of Nitroglycerin, he freaked out) and doesn't want to die... Any thoughts?"
 >
-> *Could have been:*
+> *Could have been:* `theory`, since it's literally phrased as an open question ending in "Any thoughts?" — or `analysis`, since the guess is actually built on a specific scene.
 >
-> *I chose, because:*
+> *I chose, because:* `analysis` again — my own decision rule says the checkable detail decides it, not whether the post ends in a question mark. Seeing this pattern show up a third time made me trust that it's a real, consistent gap in how I split `analysis` from `theory`, not just a one-off weird post.
 
 ---
 

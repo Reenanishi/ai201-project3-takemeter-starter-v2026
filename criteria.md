@@ -55,7 +55,7 @@ whether you hit them:
 
 Overall accuracy on the held-out test split is at least **0.55**, holding across all three seeds in Unit 6.
 
-**Why this target:** My taxonomy has four labels, so a random guesser clears about 25%. 0.55 sits well above that, but I'm training on roughly 200 posts split 70/15/15 — about 140 training rows across four classes, call it 35 per class if I keep things balanced. That's a small amount of data for a transformer fine-tune, so I'm not expecting it to climb into the 80s. 0.55 is the point where I'd honestly call the model better than flipping a four-sided coin, not a number chosen to look good.
+**Why this target:** I've got four labels, so just guessing randomly gets you about 25% right. 0.55 is well above that, but I'm only training on around 200 posts split 70/15/15, which works out to maybe 35 training examples per label if things stay balanced. That's not a lot for fine-tuning a transformer, so I don't actually expect this to get anywhere near the 80s. I picked 0.55 as the point where I could honestly say the model learned something real, not a number that's just safe to hit.
 
 ---
 
@@ -63,7 +63,7 @@ Overall accuracy on the held-out test split is at least **0.55**, holding across
 
 Every label's F1 score on the held-out test split is at least **0.40**.
 
-**Why this target:** `theory` is the label I expect to be thinnest — across the five MovieChat boards I read for Milestone 1, open questions with no supporting detail showed up far less often than confident one-line verdicts (`hot_take`) or bare agreement/disagreement (`reaction`). At 15% of a ~200-row file, the test split is only around 30 rows spread across four labels, so my smallest label could land with as few as 6-8 test examples — at that size, one or two misclassifications swing F1 by a lot. 0.40 is a floor meant to catch "the model never learned this label at all," not a bar I expect every label to just barely clear.
+**Why this target:** I'm pretty sure `theory` is going to end up my thinnest label — when I was reading posts for Milestone 1, open questions with nothing backing them up just didn't come up as often as confident one-liners (`hot_take`) or quick agree/disagree replies (`reaction`). With a ~200-row file split 70/15/15, the test set is only something like 30 rows spread across four labels, so my smallest label might only have 6-8 examples sitting in test. At that size, getting even two of them wrong swings the F1 score a lot. 0.40 is really just there to catch "the model didn't learn this label at all" — I'm not expecting every label to barely scrape by at that number.
 
 ---
 
@@ -71,7 +71,7 @@ Every label's F1 score on the held-out test split is at least **0.40**.
 
 In `labels.csv`, no single label's row count exceeds **45%** of the total, and no label's row count falls below **12%** of the total.
 
-**Why this target:** The project-wide cap is 70%, but my four labels aren't naturally balanced in the community I'm drawing from — `hot_take` and `reaction` posts are common on these boards, while `theory`-style open questions and well-argued `analysis` posts are rarer. A 45% ceiling and a 12% floor (at least ~24 of 200 rows) force me to keep actively collecting the thin categories instead of letting the easy ones fill the file, which is exactly what my planned stretch feature — 50 extra examples for the thinnest label — exists to fix if I miss it.
+**Why this target:** The project only requires staying under 70%, but my four labels really aren't naturally balanced on these boards — `hot_take` and `reaction` posts are everywhere, while `theory`-style open questions and well-argued `analysis` posts are harder to find. Setting a 45% ceiling and a 12% floor (so at least ~24 out of 200 rows) basically forces me to keep going after the thin categories instead of just filling the file with whatever's easiest to grab. If I end up missing this one, that's exactly what my stretch feature — 50 extra examples for the thinnest label — is there to fix.
 
 ---
 
@@ -79,7 +79,7 @@ In `labels.csv`, no single label's row count exceeds **45%** of the total, and n
 
 Labeling the 30 posts in `data/staff_posts.csv` under the definitions in `data/staff_taxonomy.md`, my agreement with `data/staff_labels.csv` is at least **60%** (at least 18 of 30 posts match).
 
-**Why this target:** This set uses staff's own three-label taxonomy, not my four-label one, and staff picked several of the 30 specifically because they're genuinely ambiguous between two labels — the kind of case their own decision rules exist to resolve. I'm setting 60% rather than aiming higher because I'll be applying someone else's written rules for the first time, under time pressure, and I'd rather set a number I can genuinely miss or clear than one padded to be safe.
+**Why this target:** This uses staff's own three-label taxonomy, not mine, and they picked several of the 30 posts specifically because they're genuinely ambiguous between two labels — that's the whole point of having decision rules in the first place. I went with 60% instead of something higher because I'll be applying someone else's rules for the very first time, under a time limit, and I'd rather pick a number I could actually fail than pad it to make sure I pass.
 
 ---
 
@@ -87,7 +87,7 @@ Labeling the 30 posts in `data/staff_posts.csv` under the definitions in `data/s
 
 Among test-split predictions where the model's top-class confidence is at least 0.70, accuracy on that subset is at least **10 percentage points** higher than overall test accuracy.
 
-**Why this target:** `results.json` records the softmax confidence behind every prediction specifically so this can be checked. If the model has learned anything about which of its own guesses are shaky, its confident predictions should clearly outperform its average — not just by a point or two, which could be noise given how few test examples land in each label. A 10-point gap is large enough that I'd trust it's real rather than seed-to-seed jitter.
+**Why this target:** `results.json` records how confident the model was on every single prediction, so this is actually checkable. If the model has any real sense of when it's unsure, its confident guesses should beat its own average by a real margin — not just a point or two, which could easily be noise with how few test examples I'll have per label. 10 points felt like the gap I'd actually trust as real instead of just seed-to-seed luck.
 
 ---
 
