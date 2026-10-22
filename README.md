@@ -176,17 +176,22 @@ No label goes over the project's 70% cap, or even the tighter 45% ceiling I set 
 
 ## The Training Run
 
-<!-- Your starting model, your settings, and anything you changed and why. -->
+**Base model:** `distilbert-base-uncased`
 
-**Base model:**
+**Settings:** 3 epochs, learning rate 2e-5, batch size 16, max length 128 tokens, seed 42. Trained on an Apple Silicon GPU (MPS backend), torch 2.14.1.
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Anything I changed from the defaults, and why:** Nothing yet — this first run uses all the notebook's defaults. I'm saving the one-hyperparameter change for stretch feature #2 (the second training run), so I can actually compare against this baseline run instead of changing things blind.
 
-**Anything I changed from the defaults, and why:**
+**Split sizes:** 144 train / 32 val / 32 test, out of 208 total rows. Per-label counts in the test split:
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+| Label | Train | Val | Test |
+|---|---|---|---|
+| `analysis` | 39 | 9 | 9 |
+| `hot_take` | 38 | 8 | 8 |
+| `reaction` | 43 | 9 | 9 |
+| `theory` | 24 | 6 | 6 |
+
+`theory` only has 6 examples in the test split, under the ~8 I flagged as a risk in `criteria.md` — so if its F1 jumps around a lot between seeds next unit, that's not a surprise, it's exactly what I called out ahead of time.
 
 
 
@@ -203,17 +208,17 @@ of next unit's variance. -->
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I originally wanted to collect from r/movies, so I asked Claude to go pull posts from there.
+- *What came back:* Reddit was blocked across every browser tool Claude had — the sandboxed browser, my actual Chrome through the Claude in Chrome extension, even a plain `curl` request got a 403. Claude tried a few other public film/forum sites to find something that actually worked: AVSForum turned out to be paywalled against bots, and ResetERA sat behind a Cloudflare bot-check. moviechat.org loaded cleanly with no login wall.
+- *What I changed:* I agreed to switch communities to moviechat.org instead of r/movies, since it's the same kind of public film-discussion space and satisfies the same two rules (public, not centered on one show/release). That's a real constraint from my tooling, not something I'd have chosen if Reddit had just worked.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* For Milestone 4, I had Claude collect real posts from a spread of MovieChat boards and give each one a first-pass label against my four definitions in `label_definitions.txt`.
+- *What came back:* 188 pre-labeled rows, with 5 of them flagged directly in the `note` column as uncertain "hard cases" rather than quietly guessed at.
+- *What I changed:* I read through the file and corrected labels I disagreed with, and used three of the flagged hard cases (after deciding for myself which label actually fit) for my "Three hard cases" writeup above. I did not just accept the labels as given — the ones I kept, I kept because I'd checked them against my own definitions, not because an AI said so.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** 188 of my 208 rows started as Claude's pre-labels against my definitions, which I then read and corrected row by row. The other 20 (marked `cold` in the note column) I labeled completely on my own, with no AI involved at all, straight from posts Claude had pulled but never labeled or discussed with me — that's the honesty-check batch the assignment asks for.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
