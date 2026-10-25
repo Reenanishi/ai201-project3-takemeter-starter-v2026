@@ -45,7 +45,7 @@ I plan to attempt all three Unit 5 stretch features:
 3. 50 extra examples for the thinnest label (+1 point): I will first collect and label 200 real posts and record the count for each label. Then I will identify the label with the fewest examples and collect at least 50 additional posts for that label. I will document their source, the updated label counts, and how the additional examples affected the dataset and training results.
 Declaration status:
 1. Fourth label — **done**. `theory` was added in Milestone 2 (see Label Taxonomy below): posts that pose an open question or interpretation with no checkable detail attached showed up distinctly from `analysis`/`hot_take`/`reaction` across the MovieChat boards I read, and the hardest-boundary writeup documents why the other three labels couldn't absorb it.
-2. Second training run — not yet implemented (Milestone 5).
+2. Second training run — **done**. I compared 3 epochs with 4 epochs using the same corrected dataset. The 3-epoch model achieved 61.29% accuracy and 0.4944 macro F1, while the 4-epoch model achieved 54.84% accuracy and 0.4489 macro F1. The full comparison is documented in The Training Run section.
 3. 50 extra examples for the thinnest label — not yet implemented (depends on label counts from Milestone 4).
 
 
