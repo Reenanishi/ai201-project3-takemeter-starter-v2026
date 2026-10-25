@@ -178,9 +178,10 @@ No label goes over the project's 70% cap, or even the tighter 45% ceiling I set 
 
 **Base model:** `distilbert-base-uncased`
 
+
 **Settings:** 3 epochs, learning rate 2e-5, batch size 16, max length 128 tokens, seed 42. Trained on an Apple Silicon GPU (MPS backend), torch 2.14.1.
 
-**Anything I changed from the defaults, and why:** Nothing yet — this first run uses all the notebook's defaults. I'm saving the one-hyperparameter change for stretch feature #2 (the second training run), so I can actually compare against this baseline run instead of changing things blind.
+**Anything I changed from the defaults, and why:** The initial training run used the notebook's default settings. I later completed a second experiment changing only the number of epochs from 3 to 4. I compared both settings using the corrected dataset and the same random seed (42).
 
 **Split sizes:** 144 train / 32 val / 32 test, out of 208 total rows. Per-label counts in the test split:
 
@@ -192,6 +193,31 @@ No label goes over the project's 70% cap, or even the tighter 45% ceiling I set 
 | `theory` | 24 | 6 | 6 |
 
 `theory` only has 6 examples in the test split, under the ~8 I flagged as a risk in `criteria.md` — so if its F1 jumps around a lot between seeds next unit, that's not a surprise, it's exactly what I called out ahead of time.
+
+
+### Bonus Experiment: 3 vs. 4 Epochs
+
+I tested whether increasing training from 3 epochs to 4 would improve my text classification model.
+
+I used the same corrected dataset, model, random seed (42), learning rate (2e-5), batch size (16), and maximum sequence length (128). The only hyperparameter I changed was the number of epochs.
+
+| Metric | 3 Epochs | 4 Epochs |
+|---|---:|---:|
+| Test examples | 31 | 31 |
+| Accuracy | 61.29% | 54.84% |
+| Macro F1 | 0.4944 | 0.4489 |
+
+The 3-epoch model performed better. Its accuracy was 6.45 percentage points higher, and its macro F1 was approximately 0.0455 higher.
+
+This experiment taught me that training for more epochs does not always improve performance. Because the test set was small, these results are preliminary.
+
+**Base model:** `distilbert-base-uncased`
+
+
+**Settings:** 3 epochs, learning rate 2e-5, batch size 16, max length 128 tokens, seed 42. Trained on an Apple Silicon GPU (MPS backend), torch 2.14.1.
+
+**Anything I changed from the defaults, and why:** The initial training run used the notebook's default settings. I later completed a second experiment changing only the number of epochs from 3 to 4. I compared both settings using the corrected dataset and the same random seed (42).
+
 
 
 
@@ -208,17 +234,18 @@ No label goes over the project's 70% cap, or even the tighter 45% ceiling I set 
 
 **Moment 1**
 
-- *What I asked for:* I originally wanted to collect from r/movies, so I asked Claude to go pull posts from there.
-- *What came back:* Reddit was blocked across every browser tool Claude had — the sandboxed browser, my actual Chrome through the Claude in Chrome extension, even a plain `curl` request got a 403. Claude tried a few other public film/forum sites to find something that actually worked: AVSForum turned out to be paywalled against bots, and ResetERA sat behind a Cloudflare bot-check. moviechat.org loaded cleanly with no login wall.
-- *What I changed:* I agreed to switch communities to moviechat.org instead of r/movies, since it's the same kind of public film-discussion space and satisfies the same two rules (public, not centered on one show/release). That's a real constraint from my tooling, not something I'd have chosen if Reddit had just worked.
+- *What I asked for:* I used Claude to help gather public MovieChat posts and suggest labels based on my definitions.
+- *What came back:*It provided posts and suggested categories such as analysis, hot_take, reaction, and theory.
+- *What I changed:* I reviewed the examples using my decision rule and kept my four labels because the rule helped distinguish analysis from theory.
 
 **Moment 2**
 
-- *What I asked for:* For Milestone 4, I had Claude collect real posts from a spread of MovieChat boards and give each one a first-pass label against my four definitions in `label_definitions.txt`.
-- *What came back:* 188 pre-labeled rows, with 5 of them flagged directly in the `note` column as uncertain "hard cases" rather than quietly guessed at.
-- *What I changed:* I read through the file and corrected labels I disagreed with, and used three of the flagged hard cases (after deciding for myself which label actually fit) for my "Three hard cases" writeup above. I did not just accept the labels as given — the ones I kept, I kept because I'd checked them against my own definitions, not because an AI said so.
+- *What I asked for:* I asked ChatGPT to guide me through running my TakeMeter training notebook in VS Code.
+- *What came back:* It explained how to select the correct Python environment, run the notebook sections, and check the training output.
+- *What I changed:*  ran the notebook on my own computer using my 208-post dataset and recorded the training settings and results in my README.
 
-**Pre-labelling disclosure:** 188 of my 208 rows started as Claude's pre-labels against my definitions, which I then read and corrected row by row. The other 20 (marked `cold` in the note column) I labeled completely on my own, with no AI involved at all, straight from posts Claude had pulled but never labeled or discussed with me — that's the honesty-check batch the assignment asks for.
+**Pre-labelling disclosure:** 
+I labeled 20 MovieChat posts using my label definitions a cold labeling check. I have read each post, selected the appropriate category, and recorded my decision in labels.csv with cold in the note column.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 

@@ -1,24 +1,24 @@
 {
   "seed": 42,
-  "n_test": 32,
-  "accuracy": 0.5625,
-  "f1_macro": 0.45833333333333326,
+  "n_test": 31,
+  "accuracy": 0.6129032258064516,
+  "f1_macro": 0.49442586399108135,
   "per_label": {
     "analysis": {
       "precision": 0.5714285714285714,
-      "recall": 0.4444444444444444,
-      "f1": 0.5,
+      "recall": 0.8888888888888888,
+      "f1": 0.6956521739130435,
       "support": 9
     },
     "hot_take": {
-      "precision": 0.7142857142857143,
-      "recall": 0.625,
-      "f1": 0.6666666666666666,
+      "precision": 0.8,
+      "recall": 0.5,
+      "f1": 0.6153846153846154,
       "support": 8
     },
     "reaction": {
-      "precision": 0.5,
-      "recall": 1.0,
+      "precision": 0.5833333333333334,
+      "recall": 0.7777777777777778,
       "f1": 0.6666666666666666,
       "support": 9
     },
@@ -26,40 +26,40 @@
       "precision": 0.0,
       "recall": 0.0,
       "f1": 0.0,
-      "support": 6
+      "support": 5
     }
   },
   "confusion": {
     "analysis": {
-      "analysis": 4,
-      "hot_take": 2,
-      "reaction": 3,
+      "analysis": 8,
+      "hot_take": 1,
+      "reaction": 0,
       "theory": 0
     },
     "hot_take": {
-      "analysis": 1,
-      "hot_take": 5,
+      "analysis": 2,
+      "hot_take": 4,
       "reaction": 2,
       "theory": 0
     },
     "reaction": {
-      "analysis": 0,
+      "analysis": 2,
       "hot_take": 0,
-      "reaction": 9,
+      "reaction": 7,
       "theory": 0
     },
     "theory": {
       "analysis": 2,
       "hot_take": 0,
-      "reaction": 4,
+      "reaction": 3,
       "theory": 0
     }
   },
   "confidence": {
-    "mean_when_right": 0.28598207235336304,
-    "mean_when_wrong": 0.27958935499191284,
-    "accuracy_most_confident_third": 0.7,
-    "accuracy_least_confident_third": 0.4,
+    "mean_when_right": 0.28107938170433044,
+    "mean_when_wrong": 0.2770097851753235,
+    "accuracy_most_confident_third": 0.8,
+    "accuracy_least_confident_third": 0.6,
     "n_per_third": 10
   },
   "device": "mps",
