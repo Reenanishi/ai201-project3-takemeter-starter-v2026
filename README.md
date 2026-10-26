@@ -270,28 +270,26 @@ The baseline is `facebook/bart-large-mnli`, a general-purpose zero-shot model re
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Accuracy | At least 0.55 on all three seeds | 0.548 | 0.516 | 0.613 | Missed |
+| 2. Per-label F1 | Every label at least 0.40 | theory: 0.000 | theory: 0.000 | theory: 0.000 | Missed |
+| 3. Label balance | Each label between 12% and 45% | 17.0%–29.1% | 17.0%–29.1% | 17.0%–29.1% | Met |
+| 4. Staff agreement | At least 60% (18/30) | Not tested yet | Not tested yet | Not tested yet | Pending |
+| 5. High-confidence accuracy | At least 10 percentage points above overall accuracy for predictions with confidence ≥ 0.70 | Not calculated yet | Not calculated yet | Not calculated yet | Pending |
 
 ### Confusion matrix
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
-|---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| true \ predicted | analysis | hot_take | reaction | theory |
+|---|---|---|---|---|
+| **analysis** | 8 | 0 | 1 | 0 |
+| **hot_take** | 4 | 3 | 1 | 0 |
+| **reaction** | 2 | 1 | 6 | 0 |
+| **theory** | 4 | 0 | 1 | 0 |
 
 **My biggest off-diagonal number, and what it means:**
-<!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
-     direction. "7 real analysis posts were called hot_take and only 3 went the
-     other way" is a direction, not just an error rate. -->
-
+The biggest mistake was 4, and it happened twice. The model labeled 4 `hot_take` posts and 4 `theory` posts as `analysis`. But it didn't make those mistakes the other way around. I think the model is relying too much on `analysis` instead of learning the differences between the labels. It also got all 5 `theory` posts wrong, which is a problem. I'm not sure yet if this is because of my labeling or because I don't have enough examples. I'll look at the agreement report to understand it better.
 
 
 ---
