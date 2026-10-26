@@ -324,55 +324,90 @@ The biggest mistake was 4, and it happened twice. The model labeled 4 `hot_take`
 
 ## Agreement Report
 
-<!-- Your rate against the staff set, and every disagreement adjudicated.
-
-     Remember you labelled these 30 under the STAFF taxonomy in
-     data/staff_taxonomy.md, not your own — so every argument below is made
-     from those definitions and those decision rules. -->
-
-**Agreement rate:** ___ / 30 = ___%
-
-<!-- Nobody grades this number. A 60% who argues every disagreement from the
-     stated rules beats a 95% who wrote "staff was right" nine times. Several
-     of the 30 were chosen because they're genuinely ambiguous — you should be
-     winning some of these. -->
+**Agreement rate:** 24 / 30 = 80%
 
 **Disagreements**
 
-<!-- Three lines each: the post, both labels, and who you think is right and
-     why — grounded in the staff definitions you were both applying.
-
-     Then sort each into one of three piles:
-       (a) the rule covered it and I applied it loosely → a consistency problem
-       (b) the rule genuinely doesn't say               → a gap in the definitions
-       (c) the rule is ambiguous here and my reading is defensible → argue it.
-           This is a legitimate win.
-
-     Pile (a) is the one that matters most for your diagnosis: if you applied a
-     written rule two different ways on 30 posts, that is direct evidence about
-     what you did across your own 200. -->
-
 **1.**
 > *The post:*
+"Three of us ran the same session on the same day, different shoes, within 10 seconds of each other over 5 miles. I'm not saying shoes do nothing, but whatever they do was smaller than the noise between three people."
 >
 > *Staff said / I said:*
+analysis / reaction
 >
 > *My call, and why:*
+I agree with analysis now. I originally chose reaction because the writer talked about their own running experience. But the comparison between three runners is evidence supporting an argument about shoes. Under the staff taxonomy, that makes it analysis.
 >
 > *Which pile:*
+(a) I applied the existing rule too loosely.
 
 **2.**
 > *The post:*
+"If you need a gel before 90 minutes you have a fuelling problem, not an energy problem."
 >
 > *Staff said / I said:*
+hot_take / reaction
 >
 > *My call, and why:*
+I agree with hot_take now. I originally chose reaction because the statement sounded opinionated. But the writer is making a general claim about runners without giving evidence. They aren't describing a personal feeling about something that just happened.
 >
 > *Which pile:*
+I applied the existing rule too loosely.
+
+**3.**
+> *The post:*
+"Road racing peaked in about 2015 and everything since has been marketing."
+>
+> *Staff said / I said:* 
+hot_take / reaction
+>
+> *My call, and why:*
+I agree with hot_take now. I originally chose reaction because the statement sounded like a personal opinion. But the writer is making a general claim about road racing without providing evidence. Mentioning 2015 doesn't prove the claim, and the writer isn't reacting to something that just happened.
+>
+> *Which pile:*
+(a) I applied the existing rule too loosely.
+
+**4.**
+> *The post:*
+"Track sessions are wasted on anyone running slower than 8 minute miles. You'd get more out of just running more."
+>
+> *Staff said / I said:*
+hot_take / reaction
+>
+> *My call, and why:*
+ I agree with hot_take now. I originally chose reaction because the statement sounded like a strong personal opinion. But the writer is making a general claim about runners without giving evidence. The 8-minute pace is just a threshold, not proof of the claim.
+>
+> *Which pile:*
+(a) I applied the existing rule too loosely.
+
+**5.**
+> *The post:*
+"Nobody actually enjoys the long run. They enjoy having done it, which is a completely different thing, and the sport would be more honest if it said so."
+>
+> *Staff said / I said:*
+hot_take / reaction
+>
+> *My call, and why:*
+I agree with hot_take now. I originally chose reaction because the writer sounded emotional. But they're making a general claim about how all runners feel, without providing evidence. They aren't describing something that just happened to them.
+>
+> *Which pile:*
+(a) I applied the existing rule too loosely.
+
+**6.**
+> *The post:*
+“Every injury thread on this forum is the same injury and the same three replies.”
+>
+> *Staff said / I said:*
+hot_take / reaction
+>
+> *My call, and why:*
+ I agree with hot_take now. I originally chose reaction because the writer sounded frustrated. But they're making a general claim about injury discussions without providing evidence. They aren't describing a personal feeling about something that just happened.
+>
+> *Which pile:*
+(a) I applied the existing rule too loosely.
 
 **What the pattern in my disagreements tells me:**
-
-
+I got 24 out of 30 labels right, which is 80% agreement. Most of my mistakes came from confusing `reaction` with `hot_take`. I sometimes labeled a strong opinion as `reaction` just because it sounded emotional, even when the writer wasn't talking about something that just happened to them. I also missed one `analysis` post because I focused on the personal experience instead of the evidence. This tells me I need to apply my label rules more consistently.
 
 ---
 
@@ -450,3 +485,14 @@ learned:**
 ---
 
 📖 **How to run this project: [RUNNING.md](RUNNING.md)**
+
+
+## Unit 6 Stretch Features — Planned
+
+I plan to attempt all three stretch features for up to 4 bonus points.
+
+**Confidence check (+1):** I will compare the accuracy of confident predictions with unsure predictions and report the numbers.
+
+**Per-label error analysis (+1):** I will examine the worst-performing label in my confusion matrix, identify which label it gets confused with, and explain what those errors have in common.
+
+**Second measured improvement (+2):** After my first improvement, I will make a second change based on the remaining errors, run the same three seeds again, and add a third run log to compare the results.
