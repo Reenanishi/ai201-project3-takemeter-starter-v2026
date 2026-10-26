@@ -301,23 +301,21 @@ The biggest mistake was 4, and it happened twice. The model labeled 4 `hot_take`
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | At least 0.55 on all three seeds | MISSED | Seed 42: 0.548, Seed 7: 0.516, Seed 2024: 0.613. Two seeds missed the target. |
+| 2 | Per-label F1 | Every label at least 0.40 | MISSED | Theory F1 was 0.000 on all three seeds. |
+| 3 | Label balance | Each label between 12% and 45% | MET | All labels were between 17.0% and 29.1%. |
+| 4 | Staff agreement | At least 60% (18/30) | MET | I agreed with staff on 24 out of 30 posts, giving 80% agreement. |
+| 5 | High-confidence accuracy | At least 10 percentage points above overall accuracy for confidence ≥ 0.70 | NOT YET MEASURED | I still need to calculate accuracy for predictions with confidence ≥ 0.70. |
 
 **Diagnoses**
 
-<!-- For each miss: the cause, and how you know. The four common causes are:
-     too few examples for a label, a boundary you applied inconsistently, a
-     genuinely hard label pair, and a task the model can't reach from this
-     much data.
+**Criterion 1 — Overall accuracy (MISSED):** My accuracy ranged from 0.516 to 0.613 across three seeds, so the model's performance depends on the random split. The confusion matrix shows four `hot_take` posts and four `theory` posts incorrectly predicted as `analysis`. These mistakes contributed to the missed accuracy target.
 
-     ⚠️ Use your agreement report as evidence. It is the only instrument you
-     have that can tell a LABELLING problem from a MODEL problem, and this
-     section is graded on whether you used it that way. -->
+**Criterion 2 — Per-label F1 (MISSED):** `theory` had an F1 score of 0.000 on all three seeds. In my confusion matrix, four `theory` posts were predicted as `analysis` and one as `reaction`. This suggests the model struggles to separate theories from analysis with my current examples.
 
+**Evidence from my agreement report:** I agreed with staff on 24 out of 30 posts (80%). Five disagreements happened because I labeled `hot_take` posts as `reaction`, and one happened because I labeled an `analysis` post as `reaction`. This shows I sometimes applied label boundaries inconsistently. However, the model's biggest mistakes involved `hot_take` versus `analysis` and `theory` versus `analysis`, so my agreement report does not prove that labeling inconsistency caused those specific model errors.
+
+**Criterion 5 — Confidence (NOT YET MEASURED):** I still need to calculate accuracy for predictions with confidence ≥ 0.70 before I can determine whether this criterion was met.
 
 
 ---
@@ -415,28 +413,43 @@ I got 24 out of 30 labels right, which is 80% agreement. Most of my mistakes cam
 
 **What I changed:**
 
+I increased training from 3 epochs to 4 epochs. I kept the same model, learning rate, batch size, and three random seeds.
+
 **Which diagnosis pointed at it:**
+
+My overall accuracy missed its target on two of three seeds, and the model struggled to distinguish some labels. I tested whether one additional training epoch would help the model learn the patterns in my dataset.
+
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | At least 0.55 on all three seeds | 0.581 | 0.548 | 0.645 | MISSED |
+| 2. Per-label F1 | Every label at least 0.40 | theory: 0.000 | theory: 0.000 | theory: 0.000 | MISSED |
+| 3. Label balance | Each label between 12% and 45% | 17.0%–29.1% | 17.0%–29.1% | 17.0%–29.1% | MET |
+| 4. Staff agreement | At least 60% (18/30) | 80% | 80% | 80% | MET |
+| 5. High-confidence accuracy | At least 10 percentage points above overall accuracy at confidence ≥ 0.70 | Needs checking | Needs checking | Needs checking | PENDING |
 
 **Did it help, and how do I know:**
 
-<!-- If it didn't, say so. Relabelling that didn't help is a genuinely
-     interesting result and earns full credit. -->
+Yes. Accuracy improved on all three seeds. Seed 42 increased from 0.548 to 0.581, seed 7 increased from 0.516 to 0.548, and seed 2024 increased from 0.613 to 0.645. Average accuracy increased from 55.9% to 59.1%. However, seed 7 still missed my accuracy target of 0.55, so the improvement did not fully solve the problem.
+
 
 
 
 ---
 
 ## What's Still Broken
+
+**Overall accuracy:** My 4-epoch model improved on all three seeds, but seed 7 still scored 0.548, slightly below my 0.55 target. I would try collecting more labeled examples to make performance more consistent across random splits. I stopped because I wanted to test one controlled change at a time.
+
+**Per-label F1:** The `theory` label still had an F1 score of 0.000 across all three seeds. My confusion matrices show that the model most often mistakes `theory` for `analysis`. I would collect more clear `theory` examples and review the boundary between speculation and evidence-based analysis. I stopped because adding another training epoch did not fix this problem.
+
+**High-confidence accuracy:** I have not yet measured predictions at the exact confidence threshold of 0.70, so this criterion remains unresolved. My separate confidence check showed that the most confident third was more accurate than the least confident third, but that does not establish whether the original target was met.
+
+**The gap between what I meant my labels to capture and what the model learned:**
+
+I wanted `theory` to represent speculative explanations and `analysis` to represent evidence-based reasoning. However, my model repeatedly predicted `theory` posts as `analysis`, suggesting that it learned some shared language patterns without reliably learning the distinction between evidence and speculation.
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
@@ -493,6 +506,38 @@ I plan to attempt all three stretch features for up to 4 bonus points.
 
 **Confidence check (+1):** I will compare the accuracy of confident predictions with unsure predictions and report the numbers.
 
-**Per-label error analysis (+1):** I will examine the worst-performing label in my confusion matrix, identify which label it gets confused with, and explain what those errors have in common.
+### Confidence Check — Results (+1)
+
+I compared the 10 most confident predictions with the 10 least confident predictions for each seed.
+
+| Seed | Most confident 10 | Least confident 10 |
+|---|---|---|
+| 42 | 70% accurate (7/10) | 40% accurate (4/10) |
+| 7 | 60% accurate (6/10) | 40% accurate (4/10) |
+| 2024 | 80% accurate (8/10) | 20% accurate (2/10) |
+
+The most confident predictions were more accurate on all three seeds. This suggests that confidence is somewhat useful for identifying more reliable predictions. However, the model still made mistakes among its most confident predictions, so confidence does not guarantee correctness.
+
+This check uses the most and least confident thirds of the test predictions. It does not measure the separate criterion requiring confidence of at least 0.70.
+
+**Per-label error analysis (+1):
+
+ I will examine the worst-performing label in my confusion matrix, identify which label it gets confused with, and explain what those errors have in common.
+
+### Per-Label Error Analysis — Results (+1)
+
+The worst-performing label was `theory`, with an F1 score of 0.000 across all three seeds, both before and after my improvement.
+
+| Seed | Predicted as analysis | Predicted as reaction | Predicted as hot_take | Correctly predicted as theory |
+|---|---|---|---|---|
+| 42 | 3 | 1 | 1 | 0 |
+| 7 | 3 | 2 | 0 | 0 |
+| 2024 | 3 | 2 | 0 | 0 |
+
+The most common error was predicting `theory` as `analysis`. Across the three seeds, 9 out of 15 `theory` test predictions were classified as `analysis`.
+
+These labels may be difficult to distinguish because both can contain explanations and reasoning. The key difference is whether the explanation relies on evidence or speculation. This is a possible explanation based on the confusion matrix; I would need to inspect individual posts to confirm the shared wording pattern.
+
+Increasing training from three to four epochs did not solve this problem. The model still never correctly predicted `theory`.
 
 **Second measured improvement (+2):** After my first improvement, I will make a second change based on the remaining errors, run the same three seeds again, and add a third run log to compare the results.
