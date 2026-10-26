@@ -1,0 +1,195 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 31,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 31,
+    "accuracy": 0.16129032258064516,
+    "f1_macro": 0.1103238866396761,
+    "per_label": {
+      "analysis": {
+        "precision": 0.2,
+        "recall": 0.2222222222222222,
+        "f1": 0.2105263157894737,
+        "support": 9
+      },
+      "hot_take": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 8
+      },
+      "reaction": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 9
+      },
+      "theory": {
+        "precision": 0.14285714285714285,
+        "recall": 0.6,
+        "f1": 0.23076923076923073,
+        "support": 5
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "Plus the fact that a planet covered in water isn't the easiest option for colonization anyhow. If it's salt water they'd need to spend a lot of effort removing the salt. You'd need to build tons of platforms and dredge up dirt from the ocean floor.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "That is so 2024",
+      "gold": "reaction",
+      "predicted": "theory"
+    },
+    {
+      "text": "Rose didn't really meet Jack until after 1 day. So in 3 days she cheats on her fiance, has sex with a stranger, gets him to draw her naked and seals a multi million piece of jewel off him. In 3 fkn days!",
+      "gold": "analysis",
+      "predicted": "theory"
+    },
+    {
+      "text": "I cant see that at all",
+      "gold": "reaction",
+      "predicted": "theory"
+    },
+    {
+      "text": "You must be a big movie buff? Because you write like you are.",
+      "gold": "reaction",
+      "predicted": "theory"
+    },
+    {
+      "text": "I think it would be a plea deal of not guilty by reason of temporary insanity. He'd probably get a suspended sentence or something, but his career as a cop would be over.",
+      "gold": "analysis",
+      "predicted": "theory"
+    },
+    {
+      "text": "She was convinced that she was still dreaming so she killed herself... At the end of the film, the focus was shifted on the never-ending spinning totem, which points towards the conclusion that Cobb was still dreaming after all of the occurred events... So Mal woke up from her dream as she prophesied...Cobb was wrong and continued living in his dream... So in the end, was Mal right?",
+      "gold": "theory",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I know they gave him a diploma for whatever it is he went to school for which is also questionable. Haven't watched the movie in years and it just crossed my mind. Where did he go or what he was doing while in school?",
+      "gold": "theory",
+      "predicted": "theory"
+    },
+    {
+      "text": "OK, not a football or sports fan - can you explain that joke for me?",
+      "gold": "theory",
+      "predicted": "theory"
+    },
+    {
+      "text": "I've heard that the shooting on the subway was heavily inspired by the subway shooting from the original \"Death Wish\" movie. Here's a link to the original scene if you haven't watched it.",
+      "gold": "theory",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I think that it's just that this is a really expensive, sought after apartment, with a lovely view of Central Park. I think that the owners wanted to get someone living there as soon as possible. Instead of calling the police, the owners quietly have the mess taken care of. The agent became really suspicious of Bateman when he stopped by.",
+      "gold": "analysis",
+      "predicted": "theory"
+    },
+    {
+      "text": "Essentially yes",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I thought it was unconventional, entertaining and thought provoking. And at times darkly funny.",
+      "gold": "hot_take",
+      "predicted": "theory"
+    },
+    {
+      "text": "This question was asked before, and BullSchmidt answered it. There is a wonderful discussion between two former chatters. It's a great read about Luca.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I can live with that.",
+      "gold": "reaction",
+      "predicted": "theory"
+    },
+    {
+      "text": "I get the concept of split personality. Still, I don't buy that. If that is the case, then the Narrator is the scared personality, and Tyler is the fearless personality. But if he's totally fearless, why would he put his seat belt on?",
+      "gold": "analysis",
+      "predicted": "theory"
+    },
+    {
+      "text": "It is one of the most intelligent films I've ever seen. The re-release dumbed it down significantly. The original gives the absolute bare minimum amount of information to piece together what is an incredibly complex, elaborate, and deep story.",
+      "gold": "hot_take",
+      "predicted": "theory"
+    },
+    {
+      "text": "I agree!! Way too intense. That guy would never be able to treat his band like that. That scene after the car crash was, as you say, unbelievable. I think J.K. Simmons won a supporting Oscar because he had to exert so much energy.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I think it means it's OK to be stupid as long as you don't do stupid things. If you can't help being slow, it's better to not draw negative attention to it.",
+      "gold": "theory",
+      "predicted": "theory"
+    },
+    {
+      "text": "I always thought it meant stupid is an action, not a state of being. He always responded with that statement when he was asked if he 'was stupid or something' \u2014 he was saying stupid is achieved by actions, not a way of thought.",
+      "gold": "analysis",
+      "predicted": "theory"
+    },
+    {
+      "text": "While I thought it was a very good movie I disagree with the 8.5 rating that it gets, I feel it deserves a 7.0 rating at the most although I personally give Whiplash an 8/10.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "9 out of 10 for a b-movie filled with garbage? As I said, if these movies became the \"masterpieces\" of modern cinema, cinema is in big trouble...",
+      "gold": "reaction",
+      "predicted": "theory"
+    },
+    {
+      "text": "I totally disagree. I thought it was entertaining and well made. The actors did a great job and the screenplay was excellent.",
+      "gold": "hot_take",
+      "predicted": "theory"
+    },
+    {
+      "text": "Judging by your comments your favourite movie would be the Twilight series..",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The visual effects are stunning though! Too bad it's just increadibly difficult to get it right on all fronts: audio, visual, script, acting, editing, etc...",
+      "gold": "hot_take",
+      "predicted": "theory"
+    },
+    {
+      "text": "Yeah, I had some problems with the end of this movie too. Seems like a very flimsy way to end it. But I liked it up until then.",
+      "gold": "hot_take",
+      "predicted": "theory"
+    },
+    {
+      "text": "Like the movie said, ghosts only see what they want to see. Those ghosts walking around exist is some kind of dream state, in which they just go along with the strange things that happen and time doesn't pass normally.",
+      "gold": "analysis",
+      "predicted": "theory"
+    },
+    {
+      "text": "ok, well maybe we could show more realism in films... I think it would be a breath of fresh air to see Anton or someone sitting for 25 minutes reading a newspaper, or taking a crap or brushing there teeth, flossing and then using mouthwash.",
+      "gold": "analysis",
+      "predicted": "theory"
+    },
+    {
+      "text": "Mr T just doesn't understand movies. Thank goodness very few filmmakers listen to him. He doesn't understand the power of fiction.",
+      "gold": "reaction",
+      "predicted": "theory"
+    },
+    {
+      "text": "\"Donnie Darko\" was a very good movie IMHO. It did speak to cultural trends at the time. It was relevant.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "You see, the boss of a crime family would always need a guy with a funeral parlor. It's the ultimate mop-up spot. You never know when you're gonna need a body to disappear, or get cleaned up nice. So, how do you get a squeaky-clean mortician in your pocket? You don't ask him. You back him into a corner. Bonasera's beautiful daughter goes out with a couple of punks... They beat her half to death and then it goes to court. And what happens? The judge suspends the sentence. The judge. A judge in New York in the 1940s giving a suspended sentence for that kind of beating? Come on. He says, \"Someday, and that day may never come, I'll call upon you to do a service for me.\" Now the guy's got Vito Corleone as a \"friend\".",
+      "gold": "analysis",
+      "predicted": "analysis"
+    }
+  ]
+}
