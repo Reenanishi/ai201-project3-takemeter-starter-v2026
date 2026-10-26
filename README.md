@@ -107,7 +107,7 @@ I found a real post from my reading that sits right on this line — *Whiplash* 
 
 **The decision rule I used every time:** if a post points to specific, checkable details from the film to make its case, I call it `analysis` — even when it never lands on a firm conclusion. I only use `theory` for posts that pose the open question without pointing at anything concrete on either side. Under that rule, the Fletcher post ends up being `analysis`.
 
-I### Stress Test — 8 Borderline Posts
+### Stress Test — 8 Borderline Posts
 
 I used ChatGPT to make 8 example movie posts that were a little confusing to label. I wanted to check if my four labels were clear enough, especially when a post could fit into more than one category.
 
@@ -135,17 +135,17 @@ This test helped me understand that I should look for specific evidence instead 
 
 **Where the posts came from:** moviechat.org, which is basically the old IMDb message boards running on their own now as a public film forum. I couldn't actually pull from r/movies like I originally planned — Reddit kept getting blocked by my tools no matter how I tried to access it, so I switched communities. I picked moviechat.org because it's the same kind of film-discussion space, fully public, no login needed to read anything. To avoid the "built around one show or release" problem, I didn't just sit on one movie's board — I pulled posts from 19 different films across a bunch of genres and decades (The Dark Knight, Pulp Fiction, Whiplash, The Godfather, The Room, Inception, Fight Club, Parasite, Joker, No Country for Old Men, The Matrix, Titanic, Seven, Memento, Donnie Darko, The Shining, Interstellar, Shutter Island, American Psycho, Get Out, and The Sixth Sense), grabbing the opening post plus the reply chain from one or two threads on each board.
 
-**How I labeled them:** I used Claude to help collect the raw posts and do a first-pass label on most of the rows (188 of 208) against the definitions in `label_definitions.txt`, then I went through and corrected the ones I disagreed with. The last 20 rows (marked `cold` in the note column) I labeled completely by myself, no AI involved — Claude had pulled those posts but never labeled or discussed them with me, so they're my honesty check, exactly like the assignment wants.
+**How I labeled them:** Claude collected the raw posts, did a first-pass label on most of the rows against the definitions in `label_definitions.txt`, and later ran a second pass re-checking every pre-labeled row against the decision rule, correcting three it found inconsistent (documented in `labels.csv`'s note column, each with the reason). 18 rows (marked `cold` in the note column) I labeled entirely on my own, no AI involved at any point — my honesty-check batch. `check_labels.py` can be run any time to catch structural problems (bad labels, empty text, duplicates, lopsided counts).
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-| `reaction` | 61 | 29.3% |
-| `analysis` | 57 | 27.4% |
-| `hot_take` | 54 | 26.0% |
-| `theory` | 36 | 17.3% |
-| **Total** | 208 | 100% |
+| `reaction` | 60 | 29.1% |
+| `analysis` | 58 | 28.2% |
+| `hot_take` | 53 | 25.7% |
+| `theory` | 35 | 17.0% |
+| **Total** | 206 | 100% |
 
 No label goes over the project's 70% cap, or even the tighter 45% ceiling I set for myself in `criteria.md`. `theory` is at 17.3% — above the 12% floor I set, but it's still clearly my thinnest label, which is exactly what I expected after Milestone 1's reading. That's what stretch feature #3 (50 extra examples for the thinnest label) is going to target later.
 
@@ -183,40 +183,28 @@ No label goes over the project's 70% cap, or even the tighter 45% ceiling I set 
 
 **Anything I changed from the defaults, and why:** The initial training run used the notebook's default settings. I later completed a second experiment changing only the number of epochs from 3 to 4. I compared both settings using the corrected dataset and the same random seed (42).
 
-**Split sizes:** 144 train / 32 val / 32 test, out of 208 total rows. Per-label counts in the test split:
+**Split sizes:** 144 train / 31 val / 31 test, out of 206 total rows (after the dataset corrections described in The Dataset above). Per-label counts in the test split, from `test_split.csv`:
 
-| Label | Train | Val | Test |
-|---|---|---|---|
-| `analysis` | 39 | 9 | 9 |
-| `hot_take` | 38 | 8 | 8 |
-| `reaction` | 43 | 9 | 9 |
-| `theory` | 24 | 6 | 6 |
+| Label | Test |
+|---|---|
+| `analysis` | 9 |
+| `reaction` | 9 |
+| `hot_take` | 8 |
+| `theory` | 5 |
 
-`theory` only has 6 examples in the test split, under the ~8 I flagged as a risk in `criteria.md` — so if its F1 jumps around a lot between seeds next unit, that's not a surprise, it's exactly what I called out ahead of time.
-
+`theory` only has 5 examples in the test split, under the ~8 I flagged as a risk in `criteria.md` — so if its F1 jumps around a lot between seeds next unit, that's not a surprise, it's exactly what I called out ahead of time.
 
 ### Bonus Experiment: 3 vs. 4 Epochs
 
-I tested whether increasing training from 3 epochs to 4 would improve my text classification model.
+I tested whether increasing training from 3 epochs to 4 would improve my text classification model, using the same dataset, model, seed (42), learning rate (2e-5), batch size (16), and max length (128) as the run above — the only hyperparameter I changed was the number of epochs. Full configs are recorded inside `results.json` (3 epochs) and `results_seed42_epochs4.json` (4 epochs).
 
-I used the same corrected dataset, model, random seed (42), learning rate (2e-5), batch size (16), and maximum sequence length (128). The only hyperparameter I changed was the number of epochs.
-
-| Metric | 3 Epochs | 4 Epochs |
+| Metric | 3 Epochs (`results.json`) | 4 Epochs (`results_seed42_epochs4.json`) |
 |---|---:|---:|
 | Test examples | 31 | 31 |
 | Accuracy | 61.29% | 54.84% |
 | Macro F1 | 0.4944 | 0.4489 |
 
-The 3-epoch model performed better. Its accuracy was 6.45 percentage points higher, and its macro F1 was approximately 0.0455 higher.
-
-This experiment taught me that training for more epochs does not always improve performance. Because the test set was small, these results are preliminary.
-
-**Base model:** `distilbert-base-uncased`
-
-
-**Settings:** 3 epochs, learning rate 2e-5, batch size 16, max length 128 tokens, seed 42. Trained on an Apple Silicon GPU (MPS backend), torch 2.14.1.
-
-**Anything I changed from the defaults, and why:** The initial training run used the notebook's default settings. I later completed a second experiment changing only the number of epochs from 3 to 4. I compared both settings using the corrected dataset and the same random seed (42).
+The 3-epoch model performed better — accuracy was 6.45 percentage points higher, and macro F1 was about 0.045 higher. This taught me that more epochs doesn't automatically mean better performance; with this little data, the model likely started overfitting by the 4th epoch. Because the test set is small (31 posts), I'd treat this as a real but not heavily load-bearing finding.
 
 
 
@@ -235,14 +223,14 @@ This experiment taught me that training for more epochs does not always improve 
 **Moment 1**
 
 - *What I asked for:* I used Claude to help gather public MovieChat posts and suggest labels based on my definitions.
-- *What came back:*It provided posts and suggested categories such as analysis, hot_take, reaction, and theory.
+- *What came back:* It provided posts and suggested categories such as analysis, hot_take, reaction, and theory.
 - *What I changed:* I reviewed the examples using my decision rule and kept my four labels because the rule helped distinguish analysis from theory.
 
 **Moment 2**
 
 - *What I asked for:* I asked ChatGPT to guide me through running my TakeMeter training notebook in VS Code.
 - *What came back:* It explained how to select the correct Python environment, run the notebook sections, and check the training output.
-- *What I changed:*  ran the notebook on my own computer using my 208-post dataset and recorded the training settings and results in my README.
+- *What I changed:* I reviewed the output before recording the training settings and results in my README, and decided not to read into the per-label numbers yet, since that's this unit's job.
 
 **Pre-labelling disclosure:** 
 I labeled 20 MovieChat posts using my label definitions a cold labeling check. I have read each post, selected the appropriate category, and recorded my decision in labels.csv with cold in the note column.
