@@ -506,7 +506,7 @@ I plan to attempt all three stretch features for up to 4 bonus points.
 
 **Confidence check (+1):** I will compare the accuracy of confident predictions with unsure predictions and report the numbers.
 
-### Confidence Check — Results (+1)
+### Confidence Check — Results
 
 I compared the 10 most confident predictions with the 10 least confident predictions for each seed.
 
@@ -524,7 +524,7 @@ This check uses the most and least confident thirds of the test predictions. It 
 
  I will examine the worst-performing label in my confusion matrix, identify which label it gets confused with, and explain what those errors have in common.
 
-### Per-Label Error Analysis — Results (+1)
+### Per-Label Error Analysis — Results
 
 The worst-performing label was `theory`, with an F1 score of 0.000 across all three seeds, both before and after my improvement.
 
@@ -540,4 +540,28 @@ These labels may be difficult to distinguish because both can contain explanatio
 
 Increasing training from three to four epochs did not solve this problem. The model still never correctly predicted `theory`.
 
-**Second measured improvement (+2):** After my first improvement, I will make a second change based on the remaining errors, run the same three seeds again, and add a third run log to compare the results.
+
+### Second Measured Improvement:** 
+I will test a second change based on the remaining errors.
+
+### Second Measured Improvement — Results
+
+**Diagnosis:** 
+After increasing training from 3 to 4 epochs, the model still struggled to classify `theory` posts, and one seed still missed my overall accuracy target.
+
+**What I changed:** I reduced the learning rate from `2e-5` to `1e-5`, keeping the model, dataset, batch size (16), training epochs (4), and seeds (42, 7, 2024) unchanged. I wanted to test whether smaller training updates would improve the model's ability to learn subtle label boundaries.
+
+**Third run log:**
+
+| Seed | First improvement: 4 epochs, LR 2e-5 | Second improvement: 4 epochs, LR 1e-5 | Accuracy change |
+|---|---|---|---|
+| 42 | 0.581 | 0.484 | −0.097 |
+| 7 | 0.548 | 0.258 | −0.290 |
+| 2024 | 0.645 | 0.645 | 0.000 |
+| **Average** | **0.591** | **0.462** | **−0.129** |
+
+**Did it help?** No. Accuracy decreased for seeds 42 and 7 and stayed the same for seed 2024. Average accuracy dropped from 59.1% to 46.2%. This suggests that reducing the learning rate did not help overall performance under these settings.
+
+**What I learned:** A smaller learning rate does not automatically produce better results. With only 206 labeled posts, the model may need more informative examples rather than smaller training updates. I would investigate the `theory` examples and their confusion with `analysis` before making another training change.
+
+The full results are saved in `results_three_seeds_after2.json`.
